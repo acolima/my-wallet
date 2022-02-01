@@ -48,7 +48,6 @@ const RegisterContainer = styled.div`
   background: #fff;
 
   overflow-y: scroll;
-
 `
 
 const Buttons = styled.div`

@@ -1,35 +1,34 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-const Logo = styled.h1`
-  font-family: 'Saira Stencil One', cursive;  
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 50px;
-  color: #fff;
-`
+import styled from "styled-components"
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
   display: flex;
-  gap: 30px;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
   background: #8C11BE;
 `
 
+const Header = styled.div`
+  padding: 25px 25px 40px;
+
+  font-family: "Raleway";
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 31px;
+  color: #fff;
+`
+
 const Form = styled.form`
-  width: 326px;
+  width: 90%;
+  
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 13px;
-  
 `
 
 const Input = styled.input`
@@ -57,7 +56,7 @@ const Input = styled.input`
 
 const Button = styled.button`
   height: 46px;
-  width: 326px;
+  width: 100%;
 
   border-radius: 5px;
 
@@ -71,20 +70,11 @@ const Button = styled.button`
   background: #A328D6;
 `
 
-const StyledLink = styled(Link)`
-  font-family: "Raleway";
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 18px;
-  color: #fff;
-
-`
-
 export {
-  Logo,
   Container,
+  Header,
   Form,
   Input,
-  Button,
-  StyledLink
+  Button, 
+
 }
