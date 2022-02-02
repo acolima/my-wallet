@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -8,6 +9,30 @@ const Container = styled.div`
   flex-direction: column;
 
   background: #8C11BE;
+
+  .balance-text{
+    width: 90%;
+    
+    margin: 0 auto 13px;
+    
+    font-family: "Raleway";
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #000;
+
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+  .balance{
+    font-family: "Raleway";
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #03AC00;
+  }
 `
 
 const Header = styled.div`
@@ -31,12 +56,13 @@ const Header = styled.div`
   }
 `
 
-const RegisterContainer = styled.div`
+const RegistersContainer = styled.div`
   height: 446px;
   width: 90%;
 
   margin: 0 auto 15px;
   border-radius: 5px;
+  padding-top: 20px;
 
   font-family: "Raleway";
   font-size: 20px;
@@ -48,6 +74,10 @@ const RegisterContainer = styled.div`
   background: #fff;
 
   overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const Buttons = styled.div`
@@ -60,7 +90,7 @@ const Buttons = styled.div`
   
 `
 
-const AddRegister = styled.button`
+const AddRegister = styled(Link)`
   height: 114px;
   width: 155px;
   
@@ -88,7 +118,7 @@ const AddRegister = styled.button`
 export {
   Container,
   Header,
-  RegisterContainer,
+  RegistersContainer,
   Buttons,
   AddRegister,
 }

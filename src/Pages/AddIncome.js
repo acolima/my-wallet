@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Container, Header, Button, Form, Input } from "../Components/RegisterComponents"
+import { Container, Header, Button, Form, Input } from "../Components/AddRegister"
 
 function AddIncome(){
   const [amount, setAmount] = useState("")

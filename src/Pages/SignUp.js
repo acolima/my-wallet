@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/FormComponents"
+import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/Forms"
 
 function SignUp(){
   const [name, setName] = useState("")
@@ -35,7 +35,7 @@ function SignUp(){
         <Button type="submit">Entrar</Button>
         {/* <Loader type="ThreeDots" color="#FFF" height="50" width="50" />  */}
       </Form>
-      <StyledLink to="/login">Já tem uma conta? Entre agora!</StyledLink>
+      <StyledLink to="/">Já tem uma conta? Entre agora!</StyledLink>
     </Container>
   )
 }

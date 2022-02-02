@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/FormComponents"
+import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/Forms"
 
 function Login(){
   const [email, setEmail] = useState("")
