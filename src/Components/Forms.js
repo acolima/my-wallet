@@ -46,9 +46,10 @@ const Input = styled.input`
   line-height: 20px;
   color: black;
 
-  cursor: text;
+  cursor: ${props => props.disabled ? "not-allowed" : "text"};
+  ${props => props.disabled && "pointer-events: none;"}
 
-  background: #fff;
+  background: ${props => props.disabled ? "#bababa" : "#fff"};
 
   :focus{
     border: 2px solid darkgray;
@@ -61,14 +62,19 @@ const Button = styled.button`
 
   border-radius: 5px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-family: "Raleway";
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;
-  text-align: center;
   color: #fff;
 
   background: #A328D6;
+
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
 `
 
 const StyledLink = styled(Link)`
@@ -78,6 +84,7 @@ const StyledLink = styled(Link)`
   line-height: 18px;
   color: #fff;
 
+  cursor: pointer;
 `
 
 export {
