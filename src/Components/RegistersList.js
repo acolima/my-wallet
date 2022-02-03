@@ -57,10 +57,11 @@ const Header = styled.div`
 `
 
 const RegistersContainer = styled.div`
-  height: 446px;
+  box-sizing: border-box;
+  /* height: 446px; */
   width: 90%;
 
-  margin: 0 auto 15px;
+  margin: 0 auto;
   border-radius: 5px;
   padding-top: 20px;
 
@@ -75,6 +76,8 @@ const RegistersContainer = styled.div`
 
   overflow-y: scroll;
 
+  flex-grow: 1;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -83,7 +86,10 @@ const RegistersContainer = styled.div`
 const Buttons = styled.div`
   width: 90%;
 
-  margin: 0 auto 10px;
+  margin: 20px auto 10px;
+  box-sizing: border-box;
+
+  
   
   display: flex;
   justify-content: space-around;

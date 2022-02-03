@@ -1,10 +1,10 @@
-import axios from "axios"
 import { useState } from "react"
-import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/Forms"
-import  {ThreeDots} from 'react-loader-spinner'
-import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom"
-
+import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/Forms"
+import {ThreeDots} from 'react-loader-spinner'
+import axios from "axios"
+import Swal from 'sweetalert2'
+import logo from "../assets/logo.svg"
 
 function SignUp(){
   const [name, setName] = useState("")
@@ -14,7 +14,7 @@ function SignUp(){
   const [disabled, setDisabled] = useState(false)
   let navigate = useNavigate()
 
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault()
     setDisabled(true)
 
@@ -24,23 +24,20 @@ function SignUp(){
       return
     }
     
-    const user = {name, email, password}
-    
-    const promise = axios.post("http://localhost:5000/sign-up", user)
-    
-    promise.then(() => {
+    try {
+      const user = {name, email, password}
+      await axios.post("http://localhost:5000/sign-up", user)
+      
       navigate("/")
-    })
-
-    promise.catch(error => {
+    } catch (error) {
       Swal.fire({icon: 'error', text: error.response.data})
       setDisabled(false)
-    })
+    }
   }
 
   return (
     <Container>
-      <Logo>MyWallet</Logo>
+      <Logo src={logo} alt="logo"/>
       <Form onSubmit={handleSubmit}>
         <Input 
           type="text"
@@ -73,7 +70,7 @@ function SignUp(){
         <Button type="submit" disabled={disabled}>
           {disabled ? 
           <ThreeDots color="#FFF" height={50} width={50} /> :
-          "Entrar"}
+          "Cadastrar"}
         </Button>
       </Form>
       <StyledLink to="/">Já tem uma conta? Entre agora!</StyledLink>

@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Logo = styled.h1`
-  font-family: 'Saira Stencil One', cursive;  
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 50px;
-  color: #fff;
+const Logo = styled.img`
+  height: 50px;
+  width: 147px;
 `
 
 const Container = styled.div`
