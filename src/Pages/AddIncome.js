@@ -18,7 +18,6 @@ function AddIncome(){
 
     const date = dayjs().format("DD/MM")
     const income = {amount, description, date, type: "income"}
-    console.log(auth.token)
 
     try {
       await axios.post("http://localhost:5000/add-income", income, config)

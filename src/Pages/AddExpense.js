@@ -1,14 +1,37 @@
-import { useState } from "react"
+import axios from "axios"
+import dayjs from "dayjs"
+import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
 import { Container, Header, Button, Form, Input } from "../Components/AddRegister"
+import AuthContext from "../Contexts/AuthContext"
 
 function AddExpense(){
   const [amount, setAmount] = useState("")
   const [description, setDescription] = useState("") 
+  const { auth } = useContext(AuthContext)
+  const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
+  let navigate = useNavigate()
 
+  async function handleSubmit(e){
+    e.preventDefault()
+
+    const date = dayjs().format("DD/MM")
+    const expense = {amount, description, date, type: "expense"}
+
+    try {
+      await axios.post("http://localhost:5000/add-expense", expense, config)
+
+      navigate("/registers")
+    } catch (error) {
+      Swal.fire({icon: 'error', text: error.response.data})
+    }
+  }
+  
   return(
     <Container>
       <Header>Nova saída</Header>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Input 
           type="number"
           placeholder="Valor"
