@@ -116,6 +116,8 @@ const AddRegister = styled(Link)`
   flex-direction: column;
   justify-content: space-between;
 
+  cursor: pointer;
+
   img{
     width: 21px;
   }

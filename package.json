@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "dayjs": "^1.10.7",
     "react-loader-spinner": "^5.1.0"
   }
 }
