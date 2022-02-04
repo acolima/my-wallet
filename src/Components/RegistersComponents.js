@@ -31,7 +31,7 @@ const Container = styled.div`
     font-size: 17px;
     font-weight: 400;
     line-height: 20px;
-    color: #03AC00;
+    color: ${props => (props.balance >= 0) ? "#03AC00" : "#C70000"};
   }
 `
 
@@ -58,29 +58,61 @@ const Header = styled.div`
 
 const RegistersContainer = styled.div`
   box-sizing: border-box;
-  /* height: 446px; */
+  height: 446px;
   width: 90%;
 
   margin: 0 auto;
   border-radius: 5px;
   padding-top: 20px;
-
-  font-family: "Raleway";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 23px;
-  text-align: center;
-  color: #868686;
-
+  
   background: #fff;
-
-  overflow-y: scroll;
-
-  flex-grow: 1;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
+  .empty-registers{
+    font-family: "Raleway";
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: center; 
+    color: #868686;
+  }
+`
+
+const RegistersList = styled.div`
+  overflow-y: scroll;
+  height: 300px;
+`
+
+const Register = styled.div`
+  width: 90%;
+
+  margin: 0 auto 13px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+
+  font-family: "Raleway";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: left;
+
+  .date{
+    width: 20%;
+    color: #C6C6C6;
+  }
+  .description{
+    flex-grow: 1;
+    color: #000;
+  }
+  .amount{
+    text-align: right;
+    color: ${props => (props.type === "income") ? "#03AC00" : "#C70000"};
+  }
 `
 
 const Buttons = styled.div`
@@ -89,8 +121,6 @@ const Buttons = styled.div`
   margin: 20px auto 10px;
   box-sizing: border-box;
 
-  
-  
   display: flex;
   justify-content: space-around;
   
@@ -127,6 +157,8 @@ export {
   Container,
   Header,
   RegistersContainer,
+  RegistersList,
+  Register,
   Buttons,
   AddRegister,
 }

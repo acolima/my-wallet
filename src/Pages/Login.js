@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/Forms"
+import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/FormComponents"
 import {ThreeDots} from 'react-loader-spinner'
 import logo from "../assets/logo.svg"
 import axios from "axios"

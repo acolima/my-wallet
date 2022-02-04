@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
-import { Container, Header, Button, Form, Input } from "../Components/AddRegister"
+import { Container, Header, Button, Form, Input } from "../Components/NewRegister"
 import AuthContext from "../Contexts/AuthContext"
 
 function AddExpense(){
@@ -20,7 +20,7 @@ function AddExpense(){
     const expense = {amount, description, date, type: "expense"}
 
     try {
-      await axios.post("http://localhost:5000/add-expense", expense, config)
+      await axios.post("http://localhost:5000/add-register", expense, config)
 
       navigate("/registers")
     } catch (error) {

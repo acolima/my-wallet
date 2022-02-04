@@ -1,37 +1,54 @@
-import { AddRegister, Buttons, Container, Header, RegistersContainer } from "../Components/RegistersList"
+import { AddRegister, Buttons, Container, Header, Register, RegistersContainer, RegistersList } from "../Components/RegistersComponents"
 import logout from "../assets/logout.png"
 import addIncome from "../assets/addIncome.png"
 import addExpense from "../assets/addExpense.png"
-import Register from "../Components/Register"
+import { useState, useContext, useEffect } from "react"
+import AuthContext from "../Contexts/AuthContext"
+import axios from "axios"
 
 function Registers(){
-  const registers = [
-    {date: "30/11", description: "Almoço mãe", amount: "39,90", type: "expense"},
-    {date: "27/11", description: "Mercado", amount: "542,54", type: "expense"},
-    {date: "26/11", description: "Compras churrasco", amount: "67,60", type: "expense"},
-    {date: "20/11", description: "Empréstimo Maria", amount: "500,00", type: "income"},
-    {date: "15/11", description: "Salário", amount: "3000,00", type: "income"},
-  ]
+  const [registers, setRegisters] = useState([])
+  const { auth } = useContext(AuthContext)
+  const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
+  let balance = 0
 
+  useEffect(() => {
+    getRegisters()
+  },[])
+
+  async function getRegisters() {
+    const response = await axios.get("http://localhost:5000/registers", config)
+    
+    setRegisters(response.data)
+  }
+  
+  for(const register of registers){
+    if(register.type === "income")
+      balance += parseFloat(register.amount)
+    else 
+      balance -= parseFloat(register.amount)
+  }
 
   return(
-    <Container>
+    <Container balance={balance}>
       <Header>
-        <h2>Olá, Fulano</h2>
+        <h2>Olá, {auth.name}</h2>
         <img src={logout} alt="logout" />
       </Header>
       <RegistersContainer>
-        {/* Não há registros de <br/>entrada ou saída */}
-        <div>
-          {registers.map(register => (
-            <Register
-              {...register}
-            />
+        {/* <p className="empty-registers">Não há registros de <br/>entrada ou saída</p> */}
+        <RegistersList>
+          {registers.reverse().map(register => (
+            <Register type={register.type} key={register._id}>
+              <span className="date">{register.date}</span>
+              <span className="description">{register.description}</span>
+              <span className="amount" >{register.amount}</span>
+            </Register>
           ))}
-        </div>
+        </RegistersList>
         <p className="balance-text">
           <span>SALDO</span>
-          <span className="balance">2849,96</span>
+          <span className="balance">{balance.toFixed(2)}</span>
         </p>
       </RegistersContainer>
       <Buttons>
