@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -76,11 +77,24 @@ const Button = styled.button`
   cursor: pointer;
 `
 
+const StyledLink = styled(Link)`
+  font-family: "Raleway";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+  text-align: center;
+  color: #fff;
+  
+  padding-top: 15px;
+
+  cursor: pointer;
+`
+
 export {
   Container,
   Header,
   Form,
   Input,
-  Button, 
-
+  Button,
+  StyledLink
 }

@@ -49,11 +49,13 @@ const Header = styled.div`
     line-height: 31px;
     color: #fff;
   }
+`
 
-  img{
-    width: 25px;
-    height: 25px;
-  }
+const Logout = styled.img`
+  width: 25px;
+  height: 25px;
+
+  cursor: pointer;
 `
 
 const RegistersContainer = styled.div`
@@ -156,6 +158,7 @@ const AddRegister = styled(Link)`
 export {
   Container,
   Header,
+  Logout,
   RegistersContainer,
   RegistersList,
   Register,

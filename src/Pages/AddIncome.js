@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
-import { Container, Header, Button, Form, Input } from "../Components/NewRegister"
+import { Container, Header, Button, Form, Input, StyledLink } from "../Components/NewRegister"
 import AuthContext from "../Contexts/AuthContext"
 
 function AddIncome(){
@@ -49,6 +49,7 @@ function AddIncome(){
         />
         <Button type="submit">Salvar entrada</Button>
       </Form>
+      <StyledLink to="/registers">Voltar</StyledLink>
     </Container>
   )
 }
