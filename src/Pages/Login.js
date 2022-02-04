@@ -40,6 +40,7 @@ function Login(){
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           disabled={disabled}
+          required
         />
         <Input 
           type="password"
@@ -47,6 +48,7 @@ function Login(){
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           disabled={disabled}
+          required
         />
         <Button type="submit" disabled={disabled}>
           {disabled ? 

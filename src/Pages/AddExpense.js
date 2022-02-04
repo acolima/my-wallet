@@ -1,5 +1,4 @@
 import axios from "axios"
-import dayjs from "dayjs"
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
@@ -16,8 +15,7 @@ function AddExpense(){
   async function handleSubmit(e){
     e.preventDefault()
 
-    const date = dayjs().format("DD/MM")
-    const expense = {amount, description, date, type: "expense"}
+    const expense = {amount, description, type: "expense"}
 
     try {
       await axios.post("http://localhost:5000/add-register", expense, config)
@@ -37,12 +35,14 @@ function AddExpense(){
           placeholder="Valor"
           onChange={(e) => setAmount(e.target.value)}
           value={amount}
+          required
         />
         <Input
           type="text"
           placeholder="Descrição"
           onChange={(e) => setDescription(e.target.value)}
           value={description}
+          required
         />
         <Button type="submit">Salvar saída</Button>
       </Form>

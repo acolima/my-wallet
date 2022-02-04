@@ -57,7 +57,7 @@ function Registers(){
             <Register type={register.type} key={register._id}>
               <span className="date">{register.date}</span>
               <span className="description">{register.description}</span>
-              <span className="amount" >{register.amount}</span>
+              <span className="amount">{parseFloat(register.amount).toFixed(2)}</span>
             </Register>
           ))}
         </RegistersList>

@@ -45,6 +45,7 @@ function SignUp(){
           onChange={(e) => setName(e.target.value)}
           value={name}
           disabled={disabled}
+          required
         />
         <Input 
           type="email"
@@ -52,6 +53,7 @@ function SignUp(){
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           disabled={disabled}
+          required
         />
         <Input 
           type="password"
@@ -59,6 +61,7 @@ function SignUp(){
           onChange={(e) => setPassword(e.target.value)}
           value={password}
           disabled={disabled}
+          required
         />
         <Input 
           type="password"
@@ -66,6 +69,7 @@ function SignUp(){
           onChange={(e) => setPasswordConfirm(e.target.value)}
           value={passwordConfirm}
           disabled={disabled}
+          required
         />
         <Button type="submit" disabled={disabled}>
           {disabled ? 
