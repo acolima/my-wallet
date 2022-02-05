@@ -71,7 +71,7 @@ const RegistersContainer = styled.div`
   
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   
   .empty-registers{
     font-family: "Raleway";
@@ -94,6 +94,7 @@ const Register = styled.div`
   margin: 0 auto 13px;
 
   display: flex;
+  gap: 8px;
   justify-content: space-between;
   align-items:center;
 
@@ -103,10 +104,8 @@ const Register = styled.div`
   line-height: 19px;
   text-align: left;
 
-  .date{
-    width: 20%;
-    color: #C6C6C6;
-  }
+  color: #C6C6C6;
+  
   .description{
     flex-grow: 1;
     color: #000;
@@ -114,6 +113,9 @@ const Register = styled.div`
   .amount{
     text-align: right;
     color: ${props => (props.type === "income") ? "#03AC00" : "#C70000"};
+  }
+  .delete-register{
+    cursor: pointer;
   }
 `
 

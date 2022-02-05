@@ -33,15 +33,24 @@ function Registers(){
   }
 
   async function handleLogout(){
-    navigate("/")
-    
     try{  
       await axios.delete("http://localhost:5000/logout", config)
+
+      navigate("/")
     } catch (error) {
       Swal.fire({icon: 'error', text: error.response.data})
+    }
+  }
+
+  async function deleteRegister(idRegister){
+    try {
+      await axios.delete(`http://localhost:5000/registers/${idRegister}`, config)
+      
+      getRegisters()
+    } catch (error) {
+      console.log("deu ruim")
 
     }
-
   }
 
   return(
@@ -51,21 +60,31 @@ function Registers(){
         <Logout src={logout} alt="logout" onClick={handleLogout}/>
       </Header>
       <RegistersContainer>
-        {/* <p className="empty-registers">Não há registros de <br/>entrada ou saída</p> */}
-        <RegistersList>
-          {registers.reverse().map(register => (
-            <Register type={register.type} key={register._id}>
-              <span className="date">{register.date}</span>
-              <span className="description">{register.description}</span>
-              <span className="amount">{parseFloat(register.amount).toFixed(2)}</span>
-            </Register>
-          ))}
-        </RegistersList>
-        <p className="balance-text">
-          <span>SALDO</span>
-          <span className="balance">{balance.toFixed(2)}</span>
-        </p>
+        {registers.length === 0 ? 
+          <p className="empty-registers">Não há registros de <br/>entrada ou saída</p>          
+          :
+          <>
+            <RegistersList>
+                {registers.reverse().map(register => (
+                  <Register type={register.type} key={register._id}>
+                    <span>{register.date}</span>
+                    <span className="description">{register.description}</span>
+                    <span className="amount">{parseFloat(register.amount).toFixed(2)}</span>
+                    <button className="delete-register" onClick={() => deleteRegister(register._id)}>x</button>
+                  </Register>
+                ))}
+              </RegistersList>
+              <p className="balance-text">
+                <span>SALDO</span>
+                <span className="balance">{balance.toFixed(2)}</span>
+              </p>
+          </>
+        }
       </RegistersContainer>
+
+        
+
+
       <Buttons>
         <AddRegister to="/add-income">
           <img src={addIncome} alt="add income" />
