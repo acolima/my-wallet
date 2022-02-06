@@ -23,6 +23,12 @@ function SignUp(){
       setDisabled(false)
       return
     }
+
+    if(password.length < 6){
+      Swal.fire({icon: 'error', text: "A senha deve ter no mínimo seis caracteres"})
+      setDisabled(false)
+      return
+    }
     
     const user = {name, email, password}
     const promise = api.signUp(user)

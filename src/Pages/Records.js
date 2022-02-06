@@ -14,9 +14,7 @@ function Records(){
   let balance = 0
   let navigate = useNavigate()
 
-  useEffect(() => {
-    getRecords()
-  },[])
+  useEffect(() => {getRecords()},[])
 
   for(const record of records){
     if(record.type === "income")
@@ -61,8 +59,8 @@ function Records(){
     navigate("/add-record", {state: {type}})
   }
 
-  function handleUpdate(id, type){
-    navigate("/update-record", {state: {id, type}})
+  function handleUpdate(record){
+    navigate("/update-record", {state: {record}})
   }
 
   return(
@@ -80,7 +78,7 @@ function Records(){
                 {records.reverse().map(record => (
                   <Record type={record.type} key={record._id}>
                     <span>{record.date}</span>
-                    <span className="description" onClick={() => handleUpdate(record._id, record.type)}>{record.description}</span>
+                    <span className="description" onClick={() => handleUpdate(record)}>{record.description}</span>
                     <span className="amount">{parseFloat(record.amount).toFixed(2)}</span>
                     <button className="delete-record" onClick={() => handleDelete(record._id)}>x</button>
                   </Record>

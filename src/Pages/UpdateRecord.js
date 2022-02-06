@@ -1,28 +1,28 @@
 import { useContext, useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
 import { Container, Header, Button, Form, Input, StyledLink } from "../Components/NewRecordComponents"
-import AuthContext from "../Contexts/AuthContext";
-import api from "../services/MyWalletAPI";
+import AuthContext from "../Contexts/AuthContext"
+import api from "../services/MyWalletAPI"
 
 function Update(){
-  const [amount, setAmount] = useState("")
-  const [description, setDescription] = useState("") 
-  const {state} = useLocation()
+  const { state } = useLocation()
+  const { record } = state
+  const [amount, setAmount] = useState(record.amount)
+  const [description, setDescription] = useState(record.description) 
   const { auth } = useContext(AuthContext)
-  const id = state.id
   let type = ""
   let navigate = useNavigate()
 
-  if(state.type === "income") type = "entrada"
+  if(record.type === "income") type = "entrada"
   else type = "saída"
 
   async function handleSubmit(e){
     e.preventDefault()
     
-    const record = {amount, description, type: state.type}
+    const toUpdateRecord = {amount, description, type: record.type}
 
-    const promise = api.updateRecord(id, record, auth.token)
+    const promise = api.updateRecord(record._id, toUpdateRecord, auth.token)
 
     promise.then(() => navigate("/records"))
     promise.catch(error => Swal.fire({icon: 'error', text: error.response.data}))
