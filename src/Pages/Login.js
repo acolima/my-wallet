@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom"
 import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/FormComponents"
 import {ThreeDots} from 'react-loader-spinner'
 import logo from "../assets/logo.svg"
-import axios from "axios"
 import Swal from 'sweetalert2'
 import AuthContext from "../Contexts/AuthContext"
+import api from "../services/MyWalletAPI"
 
 function Login(){
   const [email, setEmail] = useState("")
@@ -14,20 +14,21 @@ function Login(){
   let navigate = useNavigate()
   const { setAuth } = useContext(AuthContext)
 
-  async function handleSubmit(e){
+  function handleSubmit(e){
     e.preventDefault()
     setDisabled(true)
 
-    try{
-      const user = {email, password}
-      const response = await axios.post("http://localhost:5000/login", user)
-      
+    const user = {email, password}
+    const promise = api.login(user)
+    
+    promise.then(response => {
       setAuth(response.data)
-      navigate("/registers")
-    } catch (error){
+      navigate("/records")
+    })
+    promise.catch((error) => {
       Swal.fire({icon: 'error', text: error.response.data})
       setDisabled(false)
-    }
+    })
   }
 
   return (

@@ -1,35 +1,35 @@
-import axios from "axios"
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
-import { Container, Header, Button, Form, Input, StyledLink } from "../Components/NewRegister"
+import { Container, Header, Button, Form, Input, StyledLink } from "../Components/NewRecordComponents"
 import AuthContext from "../Contexts/AuthContext"
+import api from "../services/MyWalletAPI"
 
-function AddIncome(){
+function AddRecord(){
   const [amount, setAmount] = useState("")
   const [description, setDescription] = useState("") 
+  const {state} = useLocation()
+  let type = ""
   const { auth } = useContext(AuthContext)
-  const config = {headers: {'Authorization': `Bearer ${auth.token}`}}
   let navigate = useNavigate()
 
-  async function handleSubmit(e){
+  if(state.type === "income") type = "entrada"
+  else type = "saída"
+
+  function handleSubmit(e){
     e.preventDefault()
     
-    const income = {amount, description, type: "income"}
+    const record = {amount, description, type: state.type}
 
-    try {
-      await axios.post("http://localhost:5000/add-register", income, config)
+    const promise = api.addRecord(record, auth.token)
 
-      navigate("/registers")
-    } catch (error) {
-      Swal.fire({icon: 'error', text: error.response.data})
-    }
+    promise.then(() => navigate("/records"))
+    promise.catch(error => Swal.fire({icon: 'error', text: error.response.data}))
   }
   
-
   return(
     <Container>
-      <Header>Nova entrada</Header>
+      <Header>Nova {type}</Header>
       <Form onSubmit={handleSubmit}>
         <Input 
           type="number"
@@ -45,11 +45,11 @@ function AddIncome(){
           value={description}
           required
         />
-        <Button type="submit">Salvar entrada</Button>
+        <Button type="submit">Salvar {type}</Button>
       </Form>
-      <StyledLink to="/registers">Voltar</StyledLink>
+      <StyledLink to="/records">Voltar</StyledLink>
     </Container>
   )
 }
 
-export default AddIncome
+export default AddRecord

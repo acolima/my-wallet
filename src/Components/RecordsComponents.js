@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -31,7 +30,8 @@ const Container = styled.div`
     font-size: 17px;
     font-weight: 400;
     line-height: 20px;
-    color: ${props => (props.balance >= 0) ? "#03AC00" : "#C70000"};
+    ${props => props.balance === 0 && "color: #000; !important"}
+    color: ${props => (props.balance > 0) ? "#03AC00" : "#C70000"}; */
   }
 `
 
@@ -58,7 +58,7 @@ const Logout = styled.img`
   cursor: pointer;
 `
 
-const RegistersContainer = styled.div`
+const RecordsContainer = styled.div`
   box-sizing: border-box;
   height: 446px;
   width: 90%;
@@ -73,7 +73,7 @@ const RegistersContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   
-  .empty-registers{
+  .empty-records{
     font-family: "Raleway";
     font-size: 20px;
     font-weight: 400;
@@ -83,12 +83,12 @@ const RegistersContainer = styled.div`
   }
 `
 
-const RegistersList = styled.div`
+const RecordsList = styled.div`
   overflow-y: scroll;
   height: 300px;
 `
 
-const Register = styled.div`
+const Record = styled.div`
   width: 90%;
 
   margin: 0 auto 13px;
@@ -109,12 +109,13 @@ const Register = styled.div`
   .description{
     flex-grow: 1;
     color: #000;
+    cursor: pointer;
   }
   .amount{
     text-align: right;
     color: ${props => (props.type === "income") ? "#03AC00" : "#C70000"};
   }
-  .delete-register{
+  .delete-record{
     cursor: pointer;
   }
 `
@@ -127,10 +128,9 @@ const Buttons = styled.div`
 
   display: flex;
   justify-content: space-around;
-  
 `
 
-const AddRegister = styled(Link)`
+const AddRecord = styled.button`
   height: 114px;
   width: 155px;
   
@@ -161,9 +161,9 @@ export {
   Container,
   Header,
   Logout,
-  RegistersContainer,
-  RegistersList,
-  Register,
+  RecordsContainer,
+  RecordsList,
+  Record,
   Buttons,
-  AddRegister,
+  AddRecord,
 }

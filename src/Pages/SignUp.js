@@ -1,8 +1,8 @@
+import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/FormComponents"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, Container, Form, Input, Logo, StyledLink } from "../Components/FormComponents"
 import {ThreeDots} from 'react-loader-spinner'
-import axios from "axios"
+import api from "../services/MyWalletAPI"
 import Swal from 'sweetalert2'
 import logo from "../assets/logo.svg"
 
@@ -14,7 +14,7 @@ function SignUp(){
   const [disabled, setDisabled] = useState(false)
   let navigate = useNavigate()
 
-  async function handleSubmit(e){
+  function handleSubmit(e){
     e.preventDefault()
     setDisabled(true)
 
@@ -24,15 +24,14 @@ function SignUp(){
       return
     }
     
-    try {
-      const user = {name, email, password}
-      await axios.post("http://localhost:5000/sign-up", user)
-      
-      navigate("/")
-    } catch (error) {
+    const user = {name, email, password}
+    const promise = api.signUp(user)
+
+    promise.then(() => navigate("/"))
+    promise.catch(error => {
       Swal.fire({icon: 'error', text: error.response.data})
       setDisabled(false)
-    }
+    })
   }
 
   return (

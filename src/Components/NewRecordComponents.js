@@ -53,10 +53,6 @@ const Input = styled.input`
   :focus{
     border: 2px solid darkgray;
   }
-
-  .description{
-    background-color: green;
-  }
 `
 
 const Button = styled.button`

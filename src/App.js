@@ -1,10 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
-import AddExpense from "./Pages/AddExpense";
-import AddIncome from "./Pages/AddIncome";
-import Login from "./Pages/Login";
-import Registers from "./Pages/Registers";
-import SignUp from "./Pages/SignUp";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { useState } from "react"
+import { AddRecord, Login, Records, SignUp, UpdateRecord } from "./Pages/index.js"
 import AuthContext from "./Contexts/AuthContext"
 
 function App(){
@@ -16,9 +12,9 @@ function App(){
         <Routes>
           <Route path="/" element={<Login />}/>
           <Route path="/sign-up" element={<SignUp />}/>
-          <Route path="/registers" element={<Registers />}/>
-          <Route path="/add-income" element={<AddIncome />}/>
-          <Route path="/add-expense" element={<AddExpense />}/>
+          <Route path="/records" element={<Records />}/>
+          <Route path="/add-record" element={<AddRecord />}/>
+          <Route path="/update-record" element={<UpdateRecord />}/>
         </Routes>
       </BrowserRouter>
     </AuthContext.Provider>
