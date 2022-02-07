@@ -7,9 +7,11 @@ import AuthContext from "../Contexts/AuthContext"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 import api from "../services/MyWalletAPI"
+import Loader from "../Components/Loader"
 
 function Records(){
   const [records, setRecords] = useState([])
+  const [loading, setLoading] = useState(true)
   const { auth } = useContext(AuthContext)
   let balance = 0
   let navigate = useNavigate()
@@ -26,7 +28,10 @@ function Records(){
   function getRecords() {
     const promise = api.getRecords(auth.token)
 
-    promise.then(response => setRecords(response.data))
+    promise.then(response => {
+      setRecords(response.data)
+      setLoading(false)
+    })
   }
   
   function handleLogout(){
@@ -50,7 +55,7 @@ function Records(){
 
   function deleteRecord(idRecord){
     const promise = api.deleteRecord(idRecord, auth.token)
-
+    setLoading(true)
     promise.then(() => getRecords())
     promise.catch (error => Swal.fire({icon: 'error', text: error.response.data}))
   }
@@ -70,25 +75,29 @@ function Records(){
         <Logout src={logout} alt="logout" onClick={handleLogout}/>
       </Header>
       <RecordsContainer>
-        {records.length === 0 ? 
-          <p className="empty-records">Não há registros de <br/>entrada ou saída</p>          
+        {loading ?
+          <Loader/>
           :
-          <>
+          (records.length === 0 ? 
+            <p className="empty-records">Não há registros de <br/>entrada ou saída</p>          
+            :
+            <>
             <RecordsList>
-                {records.reverse().map(record => (
-                  <Record type={record.type} key={record._id}>
-                    <span>{record.date}</span>
-                    <span className="description" onClick={() => handleUpdate(record)}>{record.description}</span>
-                    <span className="amount">{parseFloat(record.amount).toFixed(2)}</span>
-                    <button className="delete-record" onClick={() => handleDelete(record._id)}>x</button>
-                  </Record>
-                ))}
-              </RecordsList>
-              <p className="balance-text">
-                <span>SALDO</span>
-                <span className="balance">{balance.toFixed(2)}</span>
-              </p>
-          </>
+            {records.reverse().map(record => (
+              <Record type={record.type} key={record._id}>
+                      <span>{record.date}</span>
+                      <span className="description" onClick={() => handleUpdate(record)}>{record.description}</span>
+                      <span className="amount">{parseFloat(record.amount).toFixed(2)}</span>
+                      <button className="delete-record" onClick={() => handleDelete(record._id)}>x</button>
+                    </Record>
+                  ))}
+                  </RecordsList>
+                  <p className="balance-text">
+                  <span>SALDO</span>
+                  <span className="balance">{balance.toFixed(2)}</span>
+                </p>
+            </>
+          )
         }
       </RecordsContainer>
 

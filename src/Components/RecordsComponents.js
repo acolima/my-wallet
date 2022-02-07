@@ -31,7 +31,7 @@ const Container = styled.div`
     font-weight: 400;
     line-height: 20px;
     ${props => props.balance === 0 && "color: #000; !important"}
-    color: ${props => (props.balance > 0) ? "#03AC00" : "#C70000"}; */
+    color: ${props => (props.balance > 0) ? "#03AC00" : "#C70000"};
   }
 `
 
@@ -71,7 +71,7 @@ const RecordsContainer = styled.div`
   
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   
   .empty-records{
     font-family: "Raleway";
@@ -85,7 +85,7 @@ const RecordsContainer = styled.div`
 
 const RecordsList = styled.div`
   overflow-y: scroll;
-  height: 300px;
+  height: 90%;
 `
 
 const Record = styled.div`
