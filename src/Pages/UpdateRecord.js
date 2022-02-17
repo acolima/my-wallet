@@ -5,34 +5,34 @@ import { Container, Header, Button, Form, Input, StyledLink } from "../Component
 import AuthContext from "../Contexts/AuthContext"
 import api from "../services/MyWalletAPI"
 
-function Update(){
+function Update() {
   const { state } = useLocation()
   const { record } = state
   const [amount, setAmount] = useState(record.amount)
-  const [description, setDescription] = useState(record.description) 
+  const [description, setDescription] = useState(record.description)
   const { auth } = useContext(AuthContext)
-  let type = ""
+  let type
   let navigate = useNavigate()
 
-  if(record.type === "income") type = "entrada"
+  if (record.type === "income") type = "entrada"
   else type = "saída"
 
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault()
-    
-    const toUpdateRecord = {amount, description, type: record.type}
+
+    const toUpdateRecord = { amount, description, type: record.type }
 
     const promise = api.updateRecord(record._id, toUpdateRecord, auth.token)
 
     promise.then(() => navigate("/records"))
-    promise.catch(error => Swal.fire({icon: 'error', text: error.response.data}))
+    promise.catch(error => Swal.fire({ icon: 'error', text: error.response.data }))
   }
 
-  return(
+  return (
     <Container>
       <Header>Editar {type}</Header>
       <Form onSubmit={handleSubmit}>
-        <Input 
+        <Input
           type="number"
           placeholder="Valor"
           onChange={(e) => setAmount(e.target.value)}

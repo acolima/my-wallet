@@ -9,19 +9,20 @@ import Swal from "sweetalert2"
 import api from "../services/MyWalletAPI"
 import Loader from "../Components/Loader"
 
-function Records(){
+function Records() {
   const [records, setRecords] = useState([])
   const [loading, setLoading] = useState(true)
   const { auth } = useContext(AuthContext)
-  let balance = 0
+  let balance
   let navigate = useNavigate()
 
-  useEffect(() => {getRecords()},[])
+  useEffect(() => { getRecords() }, [])
 
-  for(const record of records){
-    if(record.type === "income")
+  balance = 0
+  for (const record of records) {
+    if (record.type === "income")
       balance += parseFloat(record.amount)
-    else 
+    else
       balance -= parseFloat(record.amount)
   }
 
@@ -33,15 +34,15 @@ function Records(){
       setLoading(false)
     })
   }
-  
-  function handleLogout(){
+
+  function handleLogout() {
     const promise = api.logout(auth.token)
 
     promise.then(() => navigate("/"))
-    promise.catch(error => Swal.fire({icon: 'error', text: error.response.data}))
+    promise.catch(error => Swal.fire({ icon: 'error', text: error.response.data }))
   }
 
-  function handleDelete(idRecord){
+  function handleDelete(idRecord) {
     Swal.fire({
       title: 'Deseja deletar esse registro?',
       icon: 'warning',
@@ -49,53 +50,53 @@ function Records(){
       cancelButtonText: 'Não',
       confirmButtonText: 'Sim'
     }).then((result) => {
-      if(result.isConfirmed) deleteRecord(idRecord)
+      if (result.isConfirmed) deleteRecord(idRecord)
     })
   }
 
-  function deleteRecord(idRecord){
+  function deleteRecord(idRecord) {
     const promise = api.deleteRecord(idRecord, auth.token)
     setLoading(true)
     promise.then(() => getRecords())
-    promise.catch (error => Swal.fire({icon: 'error', text: error.response.data}))
+    promise.catch(error => Swal.fire({ icon: 'error', text: error.response.data }))
   }
 
-  function handleAdd(type){
-    navigate("/add-record", {state: {type}})
+  function handleAdd(type) {
+    navigate("/add-record", { state: { type } })
   }
 
-  function handleUpdate(record){
-    navigate("/update-record", {state: {record}})
+  function handleUpdate(record) {
+    navigate("/update-record", { state: { record } })
   }
 
-  return(
+  return (
     <Container balance={balance}>
       <Header>
         <h2>Olá, {auth.name}</h2>
-        <Logout src={logout} alt="logout" onClick={handleLogout}/>
+        <Logout src={logout} alt="logout" onClick={handleLogout} />
       </Header>
       <RecordsContainer>
         {loading ?
-          <Loader/>
+          <Loader />
           :
-          (records.length === 0 ? 
-            <p className="empty-records">Não há registros de <br/>entrada ou saída</p>          
+          (records.length === 0 ?
+            <p className="empty-records">Não há registros de <br />entrada ou saída</p>
             :
             <>
-            <RecordsList>
-            {records.reverse().map(record => (
-              <Record type={record.type} key={record._id}>
-                      <span>{record.date}</span>
-                      <span className="description" onClick={() => handleUpdate(record)}>{record.description}</span>
-                      <span className="amount">{parseFloat(record.amount).toFixed(2)}</span>
-                      <button className="delete-record" onClick={() => handleDelete(record._id)}>x</button>
-                    </Record>
-                  ))}
-                  </RecordsList>
-                  <p className="balance-text">
-                  <span>SALDO</span>
-                  <span className="balance">{balance.toFixed(2)}</span>
-                </p>
+              <RecordsList>
+                {records.reverse().map(record => (
+                  <Record type={record.type} key={record._id}>
+                    <span>{record.date}</span>
+                    <span className="description" onClick={() => handleUpdate(record)}>{record.description}</span>
+                    <span className="amount">{parseFloat(record.amount).toFixed(2)}</span>
+                    <button className="delete-record" onClick={() => handleDelete(record._id)}>x</button>
+                  </Record>
+                ))}
+              </RecordsList>
+              <p className="balance-text">
+                <span>SALDO</span>
+                <span className="balance">{balance.toFixed(2)}</span>
+              </p>
             </>
           )
         }
@@ -104,11 +105,11 @@ function Records(){
       <Buttons>
         <AddRecord onClick={() => handleAdd("income")}>
           <img src={addIncome} alt="add income" />
-          Nova <br/> entrada
+          Nova <br /> entrada
         </AddRecord>
         <AddRecord onClick={() => handleAdd("expense")}>
           <img src={addExpense} alt="add expense" />
-          Nova <br/> saída
+          Nova <br /> saída
         </AddRecord>
       </Buttons>
 

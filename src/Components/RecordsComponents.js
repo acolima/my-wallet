@@ -30,8 +30,11 @@ const Container = styled.div`
     font-size: 17px;
     font-weight: 400;
     line-height: 20px;
-    ${props => props.balance === 0 && "color: #000; !important"}
-    color: ${props => (props.balance > 0) ? "#03AC00" : "#C70000"};
+    color: ${props => {
+    if (props.balance === 0) return "#000";
+    else if (props.balance > 0) return "#03AC00";
+    else return "#C70000";
+  }}
   }
 `
 

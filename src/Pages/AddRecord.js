@@ -5,33 +5,30 @@ import { Container, Header, Button, Form, Input, StyledLink } from "../Component
 import AuthContext from "../Contexts/AuthContext"
 import api from "../services/MyWalletAPI"
 
-function AddRecord(){
+function AddRecord() {
   const [amount, setAmount] = useState("")
-  const [description, setDescription] = useState("") 
-  const {state} = useLocation()
-  let type = ""
+  const [description, setDescription] = useState("")
+  const { state } = useLocation()
+  let type = state.type === "income" ? "entrada" : "saída"
   const { auth } = useContext(AuthContext)
   let navigate = useNavigate()
 
-  if(state.type === "income") type = "entrada"
-  else type = "saída"
-
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault()
-    
-    const record = {amount, description, type: state.type}
+
+    const record = { amount, description, type: state.type }
 
     const promise = api.addRecord(record, auth.token)
 
     promise.then(() => navigate("/records"))
-    promise.catch(error => Swal.fire({icon: 'error', text: error.response.data}))
+    promise.catch(error => Swal.fire({ icon: 'error', text: error.response.data }))
   }
-  
-  return(
+
+  return (
     <Container>
       <Header>Nova {type}</Header>
       <Form onSubmit={handleSubmit}>
-        <Input 
+        <Input
           type="number"
           placeholder="Valor"
           onChange={(e) => setAmount(e.target.value)}
