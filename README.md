@@ -32,20 +32,35 @@ Deployment: https://mywallet-f.vercel.app/
 
 1. Clone this repository
 ```bash
-$ git clone git@github.com:acolima/MyWallet_Front.git
+git clone git@github.com:acolima/MyWallet_Front.git
 ```
 2. Install dependencies
 ```bash
-$ npm i
+npm i
 ```
 3. Run project with
 ```bash
-$ npm start
+npm start
 ```
 4. You can optionally build the project running
 ```bash
-$ npm run build
+npm run build
 ```
-5. Finally access http://localhost:3000 on your browser
+5. Finally access http://localhost:3000 on your browser (port number may vary in some cases)
 
 6. You can check the back-end repository of this project at https://github.com/acolima/MyWallet_Back and follow the instructions to run
+
+## Author
+<img src='https://avatars.githubusercontent.com/acolima' width='150px'/>
+
+<p>
+  <a href='https://github.com/acolima'>
+    <img src='https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white' alt='Github' />
+  </a>
+  <a href='https://www.linkedin.com/in/ana-caroline-oliveira-lima-51821122b/'>
+    <img src='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' alt='LinkedIn' />
+  </a>
+  <a href='mailto:acolima@gmail.com'>
+    <img src='https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white' alt='Gmail' />
+  </a>
+</p>
