@@ -34,21 +34,27 @@ Deployment: https://mywallet-f.vercel.app/
 ```bash
 git clone git@github.com:acolima/MyWallet_Front.git
 ```
-2. Install dependencies
+2. Go to the project directory
+```bash
+ cd MyWallet_Front
+```
+3. Install dependencies
 ```bash
 npm i
 ```
-3. Run project with
+4. Run project with
 ```bash
 npm start
 ```
-4. You can optionally build the project running
+5. You can optionally build the project running
 ```bash
 npm run build
 ```
-5. Finally access http://localhost:3000 on your browser (port number may vary in some cases)
+6. Finally access http://localhost:3000 on your browser (port number may vary in some cases)
 
-6. You can check the back-end repository of this project at https://github.com/acolima/MyWallet_Back and follow the instructions to run
+7. The requests are made from a URL that must be placed in an enviroment variable in the ```.env``` file (see ```.env.example``` file)
+
+8. You can check the back-end repository of this project at https://github.com/acolima/MyWallet_Back and follow the instructions to run
 
 ## Author
 <img src='https://avatars.githubusercontent.com/acolima' width='150px'/>
