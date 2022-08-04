@@ -6,7 +6,7 @@ With MyWallet you can track your incomes and expenses and always keep track of y
 
 <img src='/src/assets/mywallet.gif' alt='mywallet gif' />
 
-Deployment: https://mywallet-f.vercel.app/
+Deployment: <a href="https://mywallet-f.vercel.app/" target="_blank">MyWallet</a>
 
 ## Implemented features
 
@@ -15,7 +15,6 @@ Deployment: https://mywallet-f.vercel.app/
 - List with all the transactions with the date, description and cost 
 - Register new incomes and expenses 
 - Delete and edit your records
-- Organize your records by category (soon)
 
 ## Technologies
 <p>
@@ -26,44 +25,43 @@ Deployment: https://mywallet-f.vercel.app/
   <img src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&color=informational' alt="Axios">
   
   <img src='https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white' alt='Styled Components' />
+  
+  <img src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white' alt='Vercel' />
 </p>
 
 ## How to run
 
 1. Clone this repository
-```bash
-git clone git@github.com:acolima/MyWallet_Front.git
+```
+git clone git@github.com:acolima/my-wallet.git
 ```
 2. Go to the project directory
-```bash
- cd MyWallet_Front
+```
+ cd my-wallet
 ```
 3. Install dependencies
-```bash
+```
 npm i
 ```
 4. Run project with
-```bash
+```
 npm start
 ```
 5. You can optionally build the project running
-```bash
+```
 npm run build
 ```
-6. Finally access http://localhost:3000 on your browser (port number may vary in some cases)
+6. Finally access `http://localhost:3000` on your browser (port number may vary in some cases)
 
-7. The requests are made from a URL that must be placed in an enviroment variable in the ```.env``` file (see ```.env.example``` file)
+:star: The requests are made from a URL that must be placed in an enviroment variable in the `.env` file (see `.env.example` file)
 
-8. You can check the back-end repository of this project at https://github.com/acolima/MyWallet_Back and follow the instructions to run
+:star: You can check the back-end repository of this project <a href="https://github.com/acolima/my-wallet-api" target="_blank">here</a> and follow the instructions to run
 
 ## Author
 <img src='https://avatars.githubusercontent.com/acolima' width='150px'/>
 
 <p>
-  <a href='https://github.com/acolima'>
-    <img src='https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white' alt='Github' />
-  </a>
-  <a href='https://www.linkedin.com/in/ana-caroline-oliveira-lima-51821122b/'>
+  <a href='https://www.linkedin.com/in/ana-caroline-oliveira-lima/'>
     <img src='https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white' alt='LinkedIn' />
   </a>
   <a href='mailto:acolima@gmail.com'>
